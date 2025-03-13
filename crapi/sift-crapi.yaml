@@ -1,0 +1,261 @@
+version: 2
+targets:
+  - id: 00000000-0000-0000-0000-000000000000
+    url: http://localhost:8888/
+    traceHeader: Sift-Request
+    authorization:
+      Alice:
+        kind: dynamic
+        location: header
+        name: Authorization
+        command: ./login-alice.sh
+        timeout: 300
+      Bob:
+        kind: dynamic
+        location: header
+        name: Authorization
+        command: ./login-bob.sh
+        timeout: 300
+    operations:
+      excludeID:
+        # Avoid Sift changing password of existing users.
+        - reset_password
+        # Avoid Sift trying to create new users.
+        - signup
+    model:
+      definition:
+        type: "API_KIND_OPENAPI"
+        file: "crapi-openapi.json"
+      resourceProfiles:
+        - operation: "mechanic_signup"
+          identifier: "/input/body/mechanic_code"
+          resource: "workshop/api/mechanic"
+          action: "create"
+        - action: read
+          operation: get_report_byID
+          resource: workshop/api/mechanic/mechanic_report
+        - operation: "get_recent_posts"
+          resource: "community/api/community/post"
+          action: "list"
+        - operation: "convert_profile_video"
+          resource: "identity/api/user/video"
+          action: "read"
+        - operation: "get_location"
+          resource: "identity/api/vehicle/vehicle"
+          action: "read"
+        - operation: "get_vehicles"
+          identifier: "/output/body/-/uuid"
+          action: "list"
+        - operation: "vehicle_resend_email"
+          resource: "identity/api/vehicle/vehicle"
+          action: "update"
+        - operation: "add_vehicle"
+          identifier: "/input/body/vin"
+          resource: "identity/api/vehicle/vehicle"
+          action: "update"
+        - action: list
+          identifier: /output/body/mechanics/-/mechanic_code
+          operation: get_mechanics
+          resource: workshop/api/mechanic
+        - action: create
+          identifier: /input/body/coupon_code
+          operation: add_new_coupon
+          resource: community/api/coupon/new-coupon
+        - action: list
+          identifier: /output/body/orders/-/id
+          operation: get_orders
+          resource: workshop/api/shop/order
+        - operation: "post_comment"
+          resource: "community/api/community/post"
+          action: "create"
+        - operation: "contact_mechanic"
+          resource: "workshop/api/mechanic"
+          action: "create"
+      generators:
+        - context: /
+          rules:
+          - kind: Regex
+            params:
+              expr: '[0-9]{0,6}\.[0-9]{0,2}'
+            pattern: "^price$"
+            type: string
+          - kind: IntRange
+            params:
+              min: 1
+              max: 100
+            pattern: "^number_of_repeats$"
+            type: number
+          - kind: IntRange
+            params:
+              min: 12
+              max: 20
+            pattern: "^amount$"
+            type: number
+        - context: /get_report_byID/input/query/
+          rules:
+          - kind: ResourceReference
+            params:
+              resource: workshop/api/mechanic/receive_report
+            pattern: "^report_id$"
+            type: string
+        - context: "/contact_mechanic/input/body/"
+          rules:
+            - kind: "ResourceReference"
+              params:
+                resource: "identity/api/vehicle/vehicle"
+              pattern: "^vin$"
+              type: "string"
+            - kind: "ResourceReference"
+              params:
+                resource: "workshop/api/mechanic"
+              pattern: "^mechanic_code$"
+              type: "string"
+        - context: /create_service_report/input/query/
+          rules:
+          - kind: "ResourceReference"
+            params:
+              resource: "workshop/api/mechanic"
+            pattern: "^mechanic_code$"
+            type: "string"
+
+        # VIN and pincode are mailed when user signs up.  The values below
+        # conform to the schema, but will not be accepted as valid requests.
+        - context: "/add_vehicle/input"
+          rules:
+            - kind: "OneOfJSON"
+              params:
+                options:
+                  # Vehicle for Alice
+                  - '{"vin":"2TCGL96FUOW162689","pincode":"8170"}'
+                  # Vehicle for Bob
+                  - '{"vin":"6HFDW98ZGOR604250","pincode":"4793"}'
+              pattern: "^body$"
+
+        - context: "/get_location/input/path/"
+          rules:
+            - kind: "ResourceReference"
+              params:
+                resource: "identity/api/vehicle/vehicle"
+              pattern: "^vehicleId$"
+              type: "string"
+        - context: "/create_service_report/input/query/"
+          rules:
+            - kind: "ResourceReference"
+              params:
+                resource: "identity/api/vehicle/vehicle"
+              pattern: "^vin$"
+              type: "string"
+            - kind: "ResourceReference"
+              params:
+                resource: "workshop/api/mechanic"
+              pattern: "^mechanic_code$"
+              type: "string"
+        - context: "/create_order/input/body/"
+          rules:
+            - kind: "ResourceReference"
+              params:
+                resource: "workshop/api/shop/product"
+              pattern: "^product_id$"
+              type: "string"
+
+testProfile:
+  analyzers:
+    # Access control policy states that read and update operations on vehicle
+    # resource should only be allowed for the user that owns a vehicle.
+    #
+    # Operation that violates policy:
+    #   - get_location (GET /identity/api/v2/vehicle/{id}/location)
+    - kind: ObjectAccessControlPolicy
+      policy:
+        - resource: identity/api/vehicle/vehicle
+          owner: Alice
+          permissions:
+            - user: Alice
+              access: [list, read, update]
+            - user: Bob
+              access: [list]
+        - resource: identity/api/vehicle/vehicle
+          owner: Bob
+          permissions:
+            - user: Alice
+              access: [list]
+            - user: Bob
+              access: [list, read, update]
+
+    # Operations that do not check validity of the JWT signature
+    #   - get_dashboard (GET /identity/api/v2/user/dashboard)
+    #   - get_order_byID (GET /workshop/api/shop/orders/{id})
+    - kind: JWTAlgorithmNone
+
+    # Operations that do not check validity of the JWT signature
+    #   - get_dashboard (GET /identity/api/v2/user/dashboard)
+    #   - get_order_byID (GET /workshop/api/shop/orders/{id})
+    - kind: JWTInvalidSignature
+
+    # The `sub` claim of a JWT returned by the login operation contains user's
+    # email address.
+    - kind: JWTSensitiveInfo
+
+    # Operations that work with empty Authorization:
+    #   - get_order_byID (GET /workshop/api/shop/orders/{id})
+    - kind: BrokenObjectLevelAuthSingleUser
+
+    # Recommended security headers are missing:
+    #   - Strict-Transport-Security
+    #   - X-Content-Type-Options
+    #   - Content-Security-Policy
+    #
+    # The `Server` header exposes details about application framework.
+    - kind: SecurityHeaders
+
+    # Operations with SSRF open redirect weakness.  The contents from reading a
+    # redirect URL are returned in the response the API client.
+    #   - contact_mechanic (POST /workshop/api/merchant/contact_mechanic)
+    - kind: SSRF
+
+    # Operations with NoSql injection weakness.
+    #   - post_comment (POST /community/api/v2/community/posts/{id}/comment)
+    - kind: NoSqlInjection
+
+    # Operations with SQL injection weakness.
+    #   - apply_coupon (POST /workshop/api/shop/apply_coupon)
+    #
+    # The allStringFields option is required because vulnerability is in a
+    # string field in the request body.
+    - kind: SqlInjection
+      allStringFields: true
+
+    # One operation accepts numbers for fields that are strings, and does not
+    # validate a URL field:
+    #   - add_new_product
+    #
+    # Multiple operations do not validate the `limit` query parameter that is
+    # expecting a number value.
+    #   - get_orders
+    #   - get_recent_posts
+    #   - get_service_requests_for_mechanic
+    #   - get_workshop_users_all
+    #
+    - kind: InvalidInputType
+
+    # EmailExposure reports informational findings.
+    #   - get_mechanics
+    #   - create_post
+    #   - get_dashboard
+    #   - get_location
+    #   - get_orders
+    #   - get_post
+    #   - get_recent_posts
+    #   - get_report_byID
+    #   - get_workshop_users_all
+    #   - mechanic_signup
+    #   - post_comment
+    #   - get_order_byID
+    #   - update_order
+    - kind: CCExposure
+    - kind: DOBExposure
+    - kind: EmailExposure
+    - kind: PasswordExposure
+    - kind: SSNExposure
+
+fuzzLimit: 2
