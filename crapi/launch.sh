@@ -9,21 +9,23 @@ ${CE} compose -f docker-compose.yml up -d
 
 echo "Waiting for services to start..."
 sleep 15
+BASE_URL="http://localhost:8888"
 nc -vz localhost 8888 || { echo "Unable to connect to API..."; exit 1; }
 
 # Create two users: Alice, Bob
 echo
 echo "Creating users..."
-curl -X POST "http://localhost:8888/identity/api/auth/signup" \
+curl -X POST "${BASE_URL}/identity/api/auth/signup" \
     -H "Content-Type: application/json" \
     -d '{"email": "alice5@example.com", "name": "Alice", "number": "1234567890", "password": "ALICE123"}'
 echo
-curl -X POST "http://localhost:8888/identity/api/auth/signup" \
+curl -X POST "${BASE_URL}/identity/api/auth/signup" \
     -H "Content-Type: application/json" \
     -d '{"email": "bob3@example.com", "name": "Bob", "number": "9876543210", "password": "BOB456"}'
 echo
 
 # Verify login scripts used as auth plugins for Sift
+export SIFT_TARGET_URL="${BASE_URL}"
 ./login-alice.sh
 ./login-bob.sh
 sleep 5
@@ -34,20 +36,20 @@ sleep 15
 
 
 # Check that Order request succeeds
-statusCode=$(curl -sSL -H "Authorization: $(./login-alice.sh)" --write-out '%{http_code}' --output /dev/null  http://localhost:8888/workshop/api/shop/orders/1)
+statusCode=$(curl -sSL -H "Authorization: $(./login-alice.sh)" --write-out '%{http_code}' --output /dev/null  ${BASE_URL}/workshop/api/shop/orders/1)
 if [ "$statusCode" -ne 200 ]; then
     echo "Unable to get Order with user Alice: status=${statusCode}"
     exit 1
 fi
 
-statusCode=$(curl -sSL -H "Authorization: $(./login-alice.sh)" --write-out '%{http_code}' --output /dev/null  http://localhost:8888/identity/api/v2/vehicle/vehicles)
+statusCode=$(curl -sSL -H "Authorization: $(./login-alice.sh)" --write-out '%{http_code}' --output /dev/null  ${BASE_URL}/identity/api/v2/vehicle/vehicles)
 if [ "$statusCode" -ne 200 ]; then
     echo "Unable to get Vehicles with user Alice: status=${statusCode}"
     exit 1
 fi
 
-echo "Getting Alice's vehicles"
-curl -i -H "Authorization: $(./login-alice.sh)" http://localhost:8888/identity/api/v2/vehicle/vehicles
+echo "Getting Alice vehicles"
+curl -i -H "Authorization: $(./login-alice.sh)" ${BASE_URL}/identity/api/v2/vehicle/vehicles
 
 
 # VIN and pincode are sent by email to Mailhog (http://localhost:8025)
