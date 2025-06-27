@@ -198,7 +198,7 @@ testProfile:
 
     # Operations that work with empty Authorization:
     #   - get_order_byID (GET /workshop/api/shop/orders/{id})
-    - kind: BrokenObjectLevelAuthSingleUser
+    - kind: BrokenObjectLevelAuth
 
     # Recommended security headers are missing:
     #   - Strict-Transport-Security
