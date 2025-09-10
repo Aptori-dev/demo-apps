@@ -3,6 +3,7 @@ targets:
   - id: 00000000-0000-0000-0000-000000000000
     url: http://localhost:8888/
     traceHeader: Sift-Request
+    timeout: 15s
     authorization:
       Alice:
         kind: dynamic
