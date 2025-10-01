@@ -26,7 +26,7 @@ targets:
     model:
       definition:
         type: "API_KIND_OPENAPI"
-        file: "crapi-openapi.json"
+        file: "openapi.json"
       resourceProfiles:
         - operation: "mechanic_signup"
           identifier: "/input/body/mechanic_code"
