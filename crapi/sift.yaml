@@ -9,13 +9,13 @@ targets:
         kind: dynamic
         location: header
         name: Authorization
-        command: ./login-alice.sh
+        command: '{{with index .Env "SHELL"}}./login.sh{{else}}PowerShell login.ps1{{end}} alice5@example.com ALICE123'
         timeout: 300
       Bob:
         kind: dynamic
         location: header
         name: Authorization
-        command: ./login-bob.sh
+        command: '{{with index .Env "SHELL"}}./login.sh{{else}}PowerShell login.ps1{{end}} bob3@example.com BOB456'
         timeout: 300
     operations:
       excludeID:
