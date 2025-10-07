@@ -212,7 +212,11 @@ testProfile:
     # Operations with SSRF open redirect weakness.  The contents from reading a
     # redirect URL are returned in the response the API client.
     #   - contact_mechanic (POST /workshop/api/merchant/contact_mechanic)
-    - kind: SSRF
+    #
+    # SSRF analyzer requires that an Interactsh server has been configured in
+    # the Admin Portal of the Organization.
+    #
+    #- kind: SSRF
 
     # Operations with NoSql injection weakness.
     #   - post_comment (POST /community/api/v2/community/posts/{id}/comment)
