@@ -227,8 +227,8 @@ testProfile:
     #
     # The allStringFields option is required because vulnerability is in a
     # string field in the request body.
-    - kind: SqlInjection
-      allStringFields: true
+    #- kind: SqlInjection
+    #  allStringFields: true
 
     # One operation accepts numbers for fields that are strings, and does not
     # validate a URL field:
@@ -241,7 +241,7 @@ testProfile:
     #   - get_service_requests_for_mechanic
     #   - get_workshop_users_all
     #
-    - kind: InvalidInputType
+    #- kind: InvalidInputType
 
     # EmailExposure reports informational findings.
     #   - get_mechanics

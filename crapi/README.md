@@ -84,7 +84,7 @@ curl -X POST "http://localhost:8888/identity/api/v2/vehicle/add_vehicle" \
 ### Adding crAPI as an API Asset in Aptori
 1. Navigate to **Aptori Platform** → **Projects** → **Add API**.
 2. Add a new API asset for **crAPI**.
-3. Upload the **`crapi-openapi.json`** file from this directory.
+3. Upload the **`openapi.json`** file from this directory.
 4. Copy the **Asset ID** generated for use in the next step.
 
 ### Running Aptori Sift
@@ -102,7 +102,7 @@ sift run --config sift-crapi.yaml --target-id {{assetID}}
 The following files are sourced from the [crAPI Project](https://github.com/OWASP/crAPI)
 under the **Apache 2.0** license:
 
-- `crapi-openapi.json`
+- `openapi.json`
 - `docker-compose.yaml`
 - `keys/jwks.json`
 
