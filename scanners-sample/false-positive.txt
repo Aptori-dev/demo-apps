@@ -1,0 +1,269 @@
+############################################
+# PLACEHOLDERS & EXAMPLES (Very common)
+############################################
+
+AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+GITHUB_TOKEN=YOUR_GITHUB_TOKEN_HERE
+API_KEY=REPLACE_WITH_API_KEY
+SECRET_KEY=changeme
+PASSWORD=password
+PASSWORD=example
+PASSWORD=test
+PASSWORD=admin
+
+############################################
+# DOCUMENTATION / SAMPLE VALUES
+############################################
+
+example_aws_key = "AKIAxxxxxxxxxxxxxxxx"
+example_secret = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYxxxxxxxx"
+
+# This is an example only, do not use real keys
+sk_test_exampleStripeKey123
+ghp_examplegithubtoken1234567890
+
+############################################
+# LOW-ENTROPY STRINGS (Should be ignored)
+############################################
+
+API_KEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+TOKEN=11111111111111111111111111111111
+SECRET=abcdefabcdefabcdefabcdef
+KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+############################################
+# TEST / DUMMY / MOCK INDICATORS
+############################################
+
+TEST_API_KEY=fake_test_key
+DUMMY_SECRET=dummysecret
+MOCK_TOKEN=mocktoken123
+FAKE_PASSWORD=fakepassword
+NOT_A_REAL_SECRET=notarealsecret
+
+############################################
+# OBVIOUSLY INVALID FORMATS
+############################################
+
+AWS_ACCESS_KEY_ID=AKIA123
+AWS_SECRET_ACCESS_KEY=shortkey
+GITHUB_TOKEN=ghp_short
+SLACK_TOKEN=xoxb-short-token
+STRIPE_KEY=sk_test_short
+
+############################################
+# ENV VAR REFERENCES (NOT LEAKS)
+############################################
+
+AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+GITHUB_TOKEN=${GITHUB_TOKEN}
+DATABASE_PASSWORD=${DB_PASSWORD}
+
+############################################
+# HASHES (NOT SECRETS)
+############################################
+
+PASSWORD_HASH=5f4dcc3b5aa765d61d8327deb882cf99
+SHA256_HASH=9f86d081884c7d659a2feaa0c55ad015
+BCRYPT_HASH=$2b$10$abcdefghijklmnopqrstuv
+
+############################################
+# CHECKSUMS & IDS
+############################################
+
+REQUEST_ID=550e8400-e29b-41d4-a716-446655440000
+TRACE_ID=4bf92f3577b34da6a3ce929d0e0e4736
+SESSION_ID=session_1234567890
+
+############################################
+# PUBLIC KEYS (NOT PRIVATE)
+############################################
+
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtestpublickeydata
+-----END PUBLIC KEY-----
+
+-----BEGIN RSA PUBLIC KEY-----
+MIIBCgKCAQEAtestpublickeydata
+-----END RSA PUBLIC KEY-----
+
+############################################
+# BASE64 BUT NOT A SECRET
+############################################
+
+BASE64_SAMPLE=SGVsbG8gV29ybGQh
+ENCODED_TEXT=VGhpcyBpcyBub3QgYSBzZWNyZXQ=
+
+############################################
+# COMMENTS & TODOs WITHOUT REAL SECRETS
+############################################
+
+# TODO: add API key here
+# FIXME: rotate credentials later
+# Example token: xoxb-your-token-here
+
+############################################
+# URLs WITHOUT CREDENTIALS
+############################################
+
+DATABASE_URL=postgres://localhost:5432/mydb
+REDIS_URL=redis://localhost:6379
+MONGO_URL=mongodb://localhost:27017
+
+############################################
+# JSON WITH PLACEHOLDERS
+############################################
+
+{
+  "apiKey": "YOUR_API_KEY",
+  "secret": "REPLACE_ME",
+  "token": "EXAMPLE_TOKEN"
+}
+
+############################################
+# END FALSE POSITIVE TEST BED
+############################################
+
+# Version numbers & UUIDs that look random
+APP_VERSION=3.14.159265358979
+BUILD_ID=20240215.183045
+RELEASE_UUID=123e4567-e89b-12d3-a456-426614174000
+
+# Non-secret tokens used for identification (NOT authentication)
+CLIENT_ID=web-frontend
+PUBLIC_CLIENT_ID=react-app
+ANALYTICS_ID=UA-12345678-1
+SEGMENT_WRITE_KEY=example_write_key
+
+# Test vectors & cryptographic constants
+JWT_EXAMPLE=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.signature
+HMAC_TEST_KEY=000102030405060708090a0b0c0d0e0f
+AES_TEST_VECTOR=00112233445566778899aabbccddeeff
+
+#database:
+  username: <username>
+  password: <password>
+  apiKey: <api-key>
+
+# AWS S3 bucket names (not secrets)
+S3_BUCKET_NAME=my-app-logs
+S3_BACKUP_BUCKET=my-app-backups
+S3_PUBLIC_ASSETS=my-app-assets
+
+# AWS region names (not secrets)
+AWS_REGION=us-east-1
+AWS_DEFAULT_REGION=us-west-2
+
+# AWS service endpoints (not secrets)
+S3_ENDPOINT=https://s3.amazonaws.com
+SQS_ENDPOINT=https://sqs.us-east-1.amazonaws.com
+
+# AWS IAM role ARNs (not secrets)
+AWS_ROLE_ARN=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_LAMBDA_ROLE=arn:aws:iam::123456789012:role/MyLambdaRole
+
+# AWS service names (not secrets)
+AWS_SERVICE_NAME=s3
+AWS_REGION_NAME=us-east-1
+
+# AWS service-related strings (not secrets)
+AWS_SERVICE_ENDPOINT=https://s3.amazonaws.com
+AWS_SERVICE_REGION=us-east-1
+AWS_SERVICE_ROLE=MyApplicationRole
+AWS_SERVICE_BUCKET=my-app-logs
+
+# AWS service-related patterns (not secrets)
+AWS_SERVICE_PATTERN=arn:aws:s3:::my-app-logs
+AWS_SERVICE_PATTERN=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_PATTERN=https://s3.amazonaws.com/my-app-logs
+
+# AWS service-related test cases (not secrets)
+AWS_SERVICE_TEST_CASE=s3_bucket_name=my-app-logs
+AWS_SERVICE_TEST_CASE=s3_backup_bucket=my-app-backups
+AWS_SERVICE_TEST_CASE=s3_public_assets=my-app-assets
+AWS_SERVICE_TEST_CASE=aws_region=us-east-1
+AWS_SERVICE_TEST_CASE=aws_default_region=us-west-2
+AWS_SERVICE_TEST_CASE=s3_endpoint=https://s3.amazonaws.com
+AWS_SERVICE_TEST_CASE=sqs_endpoint=https://sqs.us-east-1.amazonaws.com
+AWS_SERVICE_TEST_CASE=aws_role_arn=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_TEST_CASE=aws_lambda_role=arn:aws:iam::123456789012:role/MyLambdaRole
+AWS_SERVICE_TEST_CASE=aws_service_name=s3
+AWS_SERVICE_TEST_CASE=aws_region_name=us-east-1
+AWS_SERVICE_TEST_CASE=aws_service_endpoint=https://s3.amazonaws.com
+AWS_SERVICE_TEST_CASE=aws_service_region=us-east-1
+AWS_SERVICE_TEST_CASE=aws_service_role=MyApplicationRole
+AWS_SERVICE_TEST_CASE=aws_service_bucket=my-app-logs
+AWS_SERVICE_TEST_CASE=aws_service_pattern=arn:aws:s3:::my-app-logs
+AWS_SERVICE_TEST_CASE=aws_service_pattern=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_TEST_CASE=aws_service_pattern=https://s3.amazonaws.com/my-app-logs
+AWS_SERVICE_TEST_CASE=aws_service_test_case=s3_bucket_name=my-app-logs
+AWS_SERVICE_TEST_CASE=aws_service_test_case=s3_backup_bucket=my-app-backups
+AWS_SERVICE_TEST_CASE=aws_service_test_case=s3_public_assets=my-app-assets
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_region=us-east-1
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_default_region=us-west-2
+AWS_SERVICE_TEST_CASE=aws_service_test_case=s3_endpoint=https://s3.amazonaws.com
+AWS_SERVICE_TEST_CASE=aws_service_test_case=sqs_endpoint=https://sqs.us-east-1.amazonaws.com
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_role_arn=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_lambda_role=arn:aws:iam::123456789012:role/MyLambdaRole
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_name=s3
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_region_name=us-east-1
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_endpoint=https://s3.amazonaws.com
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_region=us-east-1
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_role=MyApplicationRole
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_bucket=my-app-logs
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_pattern=arn:aws:s3:::my-app-logs
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_pattern=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_TEST_CASE=aws_service_test_case=aws_service_pattern=https://s3.amazonaws.com/my-app-logs
+
+# AWS service-related examples (not secrets)
+AWS_SERVICE_EXAMPLE=s3_bucket_name=my-app-logs
+AWS_SERVICE_EXAMPLE=s3_backup_bucket=my-app-backups
+AWS_SERVICE_EXAMPLE=s3_public_assets=my-app-assets
+AWS_SERVICE_EXAMPLE=aws_region=us-east-1
+AWS_SERVICE_EXAMPLE=aws_default_region=us-west-2
+AWS_SERVICE_EXAMPLE=s3_endpoint=https://s3.amazonaws.com
+AWS_SERVICE_EXAMPLE=sqs_endpoint=https://sqs.us-east-1.amazonaws.com
+AWS_SERVICE_EXAMPLE=aws_role_arn=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_EXAMPLE=aws_lambda_role=arn:aws:iam::123456789012:role/MyLambdaRole
+AWS_SERVICE_EXAMPLE=aws_service_name=s3
+AWS_SERVICE_EXAMPLE=aws_region_name=us-east-1
+AWS_SERVICE_EXAMPLE=aws_service_endpoint=https://s3.amazonaws.com
+AWS_SERVICE_EXAMPLE=aws_service_region=us-east-1
+AWS_SERVICE_EXAMPLE=aws_service_role=MyApplicationRole
+AWS_SERVICE_EXAMPLE=aws_service_bucket=my-app-logs
+AWS_SERVICE_EXAMPLE=aws_service_pattern=arn:aws:s3:::my-app-logs
+AWS_SERVICE_EXAMPLE=aws_service_pattern=arn:aws:iam::123456789012:role/MyApplicationRole
+AWS_SERVICE_EXAMPLE=aws_service_pattern=https://s3.amazonaws.com/my-app-logs
+AWS_SERVICE_EXAMPLE=aws_service_example=s3_bucket_name=my-app-logs
+AWS_SERVICE_EXAMPLE=aws_service_example=s3_backup_bucket=my-app-backups
+AWS_SERVICE_EXAMPLE=aws_service_example=s3_public_assets=my-app-assets
+AWS_SERVICE_EXAMPLE=aws_service_example=aws_region
+
+# Configuration schemas (values are intentionally symbolic)
+database:
+  username: <username>
+  password: <password>
+  apiKey: <api-key>
+
+# Localhost / dev-only credentials
+DEV_DB_PASSWORD=dev
+LOCAL_ADMIN_PASSWORD=admin
+TEST_REDIS_PASSWORD=test
+
+# Comments describing secrets, not containing them
+# AWS_SECRET_ACCESS_KEY is stored in Vault
+# Rotate GitHub token every 90 days
+
+# Placeholder values in documentation
+DB_PASSWORD=your_db_password
+API_KEY=your_api_key
+
+# Test data that resembles secrets
+TEST_API_KEY=sk_test_1234567890
+TEST_DB_PASSWORD=test_password
+TEST_JWT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+# AWS service endpoints (not secrets)
+S3_ENDPOINT=https://s3.amazonaws.com
+SQS_ENDPOINT=https://sqs.us-east-1.amazonaws.com

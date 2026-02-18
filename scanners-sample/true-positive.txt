@@ -1,0 +1,274 @@
+############################################
+# AWS (Multiple Rule Variants)
+############################################
+
+AWS_ACCESS_KEY_ID=AKIA1234567890ABCDE
+AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+AWS_SESSION_TOKEN=IQoJb3JpZ2luX2VjEOr//////////wEaCXVzLWVhc3QtMSJHMEUCIQDfakeTOKEN
+
+aws_access_key_id = "ASIA1234567890ABCDE"
+aws_secret_access_key = "abcdEFGHijklMNOPqrstUVWXyz0123456789abcd"
+
+############################################
+# Azure
+############################################
+
+AZURE_CLIENT_ID=11111111-2222-3333-4444-555555555555
+AZURE_CLIENT_SECRET=~Q2_fakeAzureSecretKey1234567890
+AZURE_TENANT_ID=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+AZURE_STORAGE_KEY=Eby8vdM02xNOcqFeqC1FakeAzureKey==
+
+############################################
+# Google Cloud
+############################################
+
+GOOGLE_API_KEY=AIzaSyD_fakeGCPKey1234567890abcdef
+GCP_API_KEY=AIzaSyA_fakeGoogleKey1234567890
+GCLOUD_API_KEY=AIzaSyB_fakeKey1234567890abcdef
+
+############################################
+# GitHub Tokens
+############################################
+
+GITHUB_TOKEN=ghp_1234567890abcdef1234567890abcdef1234
+GITHUB_FINE_GRAINED_TOKEN=github_pat_11AAAA_fakePATtoken123456789
+GITHUB_OAUTH_TOKEN=gho_fakeOAuthToken1234567890
+
+############################################
+# GitLab
+############################################
+
+GITLAB_TOKEN=glpat-fakeGitLabToken1234567890
+GITLAB_PRIVATE_TOKEN=glpt-fakePrivateToken1234567890
+
+############################################
+# Slack
+############################################
+
+SLACK_BOT_TOKEN=xoxb-123456789012-123456789012-FAKESLACKTOKEN
+SLACK_USER_TOKEN=xoxp-123456789012-123456789012-FAKESLACKTOKEN
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/FAKEWEBHOOK
+
+############################################
+# Stripe
+############################################
+
+STRIPE_SECRET_KEY=sk_test_51FakeStripeKey1234567890
+STRIPE_LIVE_KEY=sk_live_51FakeStripeKey1234567890
+
+############################################
+# Twilio
+############################################
+
+TWILIO_ACCOUNT_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+TWILIO_AUTH_TOKEN=fakeTwilioAuthToken123456789
+
+############################################
+# SendGrid
+############################################
+
+SENDGRID_API_KEY=SG.fakeSendGridKey1234567890abcdef
+
+############################################
+# Mailgun
+############################################
+
+MAILGUN_API_KEY=key-fakeMailgunKey1234567890abcdef
+
+############################################
+# JWT / OAuth
+############################################
+
+JWT_SECRET=super-secret-jwt-signing-key-123456789
+JWT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.fake.payload
+OAUTH_CLIENT_SECRET=fakeOAuthClientSecret123456789
+
+############################################
+# Database Credentials
+############################################
+
+MYSQL_PASSWORD=MySQLPassw0rd!
+POSTGRES_PASSWORD=PostgresPass123!
+MONGO_URI=mongodb://admin:MongoPass123@localhost:27017/db
+REDIS_PASSWORD=redis-secret-password
+
+############################################
+# Generic API Keys (Entropy-based)
+############################################
+
+API_KEY=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+SECRET_KEY=0123456789abcdef0123456789abcdef
+PRIVATE_TOKEN=abcd1234efgh5678ijkl9012mnop3456qrst
+
+############################################
+# CI / CD
+############################################
+
+GITHUB_ACTIONS_TOKEN=ghs_fakeActionsToken1234567890
+CIRCLECI_TOKEN=circleci_fake_token_123456789
+TRAVIS_TOKEN=fakeTravisToken123456789
+
+############################################
+# Package Managers
+############################################
+
+NPM_TOKEN=npm_fake_token_1234567890abcdef
+PYPI_API_TOKEN=pypi-AgEN_fakePypiToken123456789
+RUBYGEMS_API_KEY=fakeRubyGemsKey1234567890
+
+############################################
+# Private Keys (High Confidence Rules)
+############################################
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAtotallyfakeprivatekeydata123456789
+-----END RSA PRIVATE KEY-----
+
+-----BEGIN EC PRIVATE KEY-----
+MHcCAQEEIFakeECPrivateKeyData123456
+-----END EC PRIVATE KEY-----
+
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABGZha2U=
+-----END OPENSSH PRIVATE KEY-----
+
+############################################
+# Basic Auth / Headers
+############################################
+
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+Authorization: Bearer faketoken1234567890abcdef
+
+# Cloud & Infra tokens beyond the big 3
+# DigitalOcean
+DIGITALOCEAN_TOKEN=dop_v1_fakeDigitalOceanToken1234567890abcdef
+
+# Cloudflare
+CLOUDFLARE_API_TOKEN=fakeCloudflareToken1234567890abcdef
+CLOUDFLARE_GLOBAL_API_KEY=fakeGlobalAPIKey1234567890abcdef
+
+# Heroku
+HEROKU_API_KEY=fakeHerokuAPIKey1234567890abcdef
+
+#Kubernetes & container ecosystem secrets
+# Kubernetes
+KUBE_TOKEN=eyJhbGciOiJSUzI1NiIsImtpZCI6ImZha2UifQ.fake.payload.signature
+
+# Docker
+DOCKER_AUTH_CONFIG={"auths":{"https://index.docker.io/v1/":{"auth":"ZmFrZTp0b2tlbg=="}}}
+
+# Messaging / payment providers
+# PayPal
+PAYPAL_CLIENT_SECRET=EJ_fakePayPalSecret1234567890abcdef
+
+# Square
+SQUARE_ACCESS_TOKEN=sq0atp-fakeSquareToken1234567890
+
+# Telegram
+TELEGRAM_BOT_TOKEN=123456789:AAFakeTelegramBotToken1234567890
+
+# Modern AI / LLM API keys
+# OpenAI
+OPENAI_API_KEY=sk-fakeOpenAIKey1234567890abcdef
+
+# Anthropic
+ANTHROPIC_API_KEY=sk-ant-fakeAnthropicKey1234567890abcdef
+
+# HuggingFace
+HUGGINGFACE_TOKEN=hf_fakeHuggingFaceToken1234567890
+
+# Encoded / indirect secrets
+# Base64-encoded secret
+ENCODED_SECRET=c3VwZXJzZWNyZXRrZXkxMjM0NTY=
+
+# URL-embedded credentials
+DATABASE_URL=postgres://admin:FakePass123@localhost:5432/appdb
+
+# Near-threshold entropy secrets
+LOW_ENTROPY_SECRET=aaaaaaaaaaaaaaaaaaaaaaaa
+HIGH_ENTROPY_SECRET=akd93jd9S!dk39dK$29dK3
+
+# Secrets in code-like contexts
+api_key = "sk_test_fakeStripeKey1234567890"
+headers = {"Authorization": "Bearer ghp_fakeGitHubToken1234567890"}
+
+# Comments & docs leaks
+# TODO: rotate key sk_live_fakeStripeKey1234567890
+
+# Mobile / Client-side secrets
+# Android
+ANDROID_API_KEY=AIzaSyFakeAndroidKey1234567890abcdef
+
+# iOS
+IOS_API_KEY=AIzaSyFakeIOSKey1234567890abcdef
+
+# CDN, Edge & Observability tools
+# Fastly
+FASTLY_API_KEY=fakeFastlyKey1234567890abcdef
+
+# Datadog
+DATADOG_API_KEY=fakeDatadogKey1234567890abcdef
+
+# New Relic
+NEW_RELIC_LICENSE_KEY=fakeNewRelicKey1234567890abcdef
+
+# Search & data platforms
+# Elastic
+ELASTICSEARCH_PASSWORD=ElasticPass123!
+
+# Splunk
+SPLUNK_HEC_TOKEN=fakeSplunkHECToken1234567890abcdef
+
+# Internal service-to-service secrets
+SERVICE_AUTH_TOKEN=svc_auth_1234567890abcdef
+INTERNAL_API_KEY=int_api_key_abcdef1234567890
+
+# Vault & secret managers
+# HashiCorp Vault
+VAULT_TOKEN=s.fakeVaultToken1234567890abcdef
+
+# AWS Secrets Manager (ARN-style reference)
+SECRET_ARN=arn:aws:secretsmanager:us-east-1:123456789012:secret:mysecret-AbCdEf
+
+# PEM variants most people forget
+-----BEGIN PRIVATE KEY-----
+MIIFakeGenericPrivateKeyData123456789
+-----END PRIVATE KEY-----
+
+-----BEGIN ENCRYPTED PRIVATE KEY-----
+MIIFakeEncryptedPrivateKeyData123456789
+-----END ENCRYPTED PRIVATE KEY-----
+
+# SAML / Identity provider secrets
+SAML_PRIVATE_KEY=MIIFakeSAMLKey123456789
+OKTA_API_TOKEN=00FakeOktaToken123456789abcdef
+
+# Feature-flag & experimentation platforms
+# LaunchDarkly
+LAUNCHDARKLY_SDK_KEY=sdk-fakeLaunchDarklyKey1234567890
+
+# Split.io
+SPLIT_API_KEY=fakeSplitKey1234567890abcdef
+
+# Backup & storage providers
+# Backblaze
+B2_APPLICATION_KEY=fakeBackblazeKey1234567890abcdef
+
+# MinIO
+MINIO_ACCESS_KEY=minioadmin
+MINIO_SECRET_KEY=minioadminsecret
+
+# Secrets split across lines
+AWS_SECRET_ACCESS_KEY_PART1=wJalrXUtnFEMI/
+AWS_SECRET_ACCESS_KEY_PART2=K7MDENG/bPxRfiCYEXAMPLEKEY
+
+# Secrets inside JSON blobs
+{
+  "apiKey": "sk_live_fakeStripeKey1234567890"
+}
+
+# Secrets inside comments
+# prod key: sk_live_fakeStripeKey1234567890
+
+# Obfuscated / transformed secrets
+API_KEY = "sk_" + "live_" + "fakeStripeKey1234567890"
