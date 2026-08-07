@@ -4,7 +4,7 @@
 # Usage: login.sh username password
 #
 
-curl -sS \
+exec curl -sS \
     -H "Content-Type: application/json" \
     -d "{\"email\": \"$1\", \"password\": \"$2\"}" \
     -X POST \

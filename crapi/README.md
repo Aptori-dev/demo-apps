@@ -61,7 +61,8 @@ To retrieve the email:
 Replace `{{ALICE_VIN}}` and `{{ALICE_PINCODE}}` with values from Mailhog.
 
 ```sh
-curl -X POST "http://localhost:8888/identity/api/v2/vehicle/add_vehicle" \
+export SIFT_TARGET_URL=http://localhost:8888
+curl -X POST "${SIFT_TARGET_URL}/identity/api/v2/vehicle/add_vehicle" \
     -H "Authorization: $(./login-alice.sh)" \
     -H "Content-Type: application/json" \
     -d '{"vin": "{{ALICE_VIN}}", "pincode": "{{ALICE_PINCODE}}"}'
@@ -71,7 +72,8 @@ curl -X POST "http://localhost:8888/identity/api/v2/vehicle/add_vehicle" \
 Replace `{{BOB_VIN}}` and `{{BOB_PINCODE}}` with values from Mailhog.
 
 ```sh
-curl -X POST "http://localhost:8888/identity/api/v2/vehicle/add_vehicle" \
+export SIFT_TARGET_URL=http://localhost:8888
+curl -X POST "${SIFT_TARGET_URL}/identity/api/v2/vehicle/add_vehicle" \
     -H "Authorization: $(./login-bob.sh)" \
     -H "Content-Type: application/json" \
     -d '{"vin": "{{BOB_VIN}}", "pincode": "{{BOB_PINCODE}}"}'
@@ -87,11 +89,18 @@ curl -X POST "http://localhost:8888/identity/api/v2/vehicle/add_vehicle" \
 3. Upload the **`openapi.json`** file from this directory.
 4. Copy the **Asset ID** generated for use in the next step.
 
+### Create an Aptori Platform Key
+
+1. Navigate to Settings by clicking on the User Profile at the bottom left.  Then, select "Platform Keys".
+2. Add a Platform Key and copy its value.
+3. Set environment variable `export APOTRI_PLATFORM_KEY="..."` to the copied value.
+
 ### Running Aptori Sift
 Run the following command, replacing `{{assetID}}` with the actual Asset ID:
 
 ```sh
-sift run --config sift-crapi.yaml --target-id {{assetID}}
+export APTORI_PLATFORM_KEY="{{platformKey}}"
+sift run --config sift.yaml --target-id {{assetID}}
 ```
 
 ---
