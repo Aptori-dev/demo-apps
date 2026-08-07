@@ -1,7 +1,7 @@
 version: 2
 targets:
   - id: 00000000-0000-0000-0000-000000000000
-    url: http://localhost:8888/
+    url: http://localhost:8888
     traceHeader: Sift-Request
     timeout: 15s
     authorization:
@@ -9,13 +9,13 @@ targets:
         kind: dynamic
         location: header
         name: Authorization
-        command: '{{with index .Env "SHELL"}}./login.sh{{else}}PowerShell login.ps1{{end}} alice5@example.com ALICE123'
+        command: '{{with index .Env "SHELL"}}./login.sh{{else}}PowerShell login.ps1{{end}} alice5@example.com ALiCE&123'
         timeout: 300
       Bob:
         kind: dynamic
         location: header
         name: Authorization
-        command: '{{with index .Env "SHELL"}}./login.sh{{else}}PowerShell login.ps1{{end}} bob3@example.com BOB456'
+        command: '{{with index .Env "SHELL"}}./login.sh{{else}}PowerShell login.ps1{{end}} bob3@example.com BoBBY!456'
         timeout: 300
     operations:
       excludeID:

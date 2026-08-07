@@ -17,11 +17,11 @@ echo
 echo "Creating users..."
 curl -X POST "${BASE_URL}/identity/api/auth/signup" \
     -H "Content-Type: application/json" \
-    -d '{"email": "alice5@example.com", "name": "Alice", "number": "1234567890", "password": "ALICE123"}'
+    -d '{"email": "alice5@example.com", "name": "Alice", "number": "1234567890", "password": "ALiCE&123"}'
 echo
 curl -X POST "${BASE_URL}/identity/api/auth/signup" \
     -H "Content-Type: application/json" \
-    -d '{"email": "bob3@example.com", "name": "Bob", "number": "9876543210", "password": "BOB456"}'
+    -d '{"email": "bob3@example.com", "name": "Bob", "number": "9876543210", "password": "BoBBY!456"}'
 echo
 
 # Verify login scripts used as auth plugins for Sift
